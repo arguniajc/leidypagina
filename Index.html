@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Reina - Feliz 29 Primaveras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ff8fa3;
+            --accent: #ffb3c6;
+            --dark: #590d22;
+            --light: #fff0f3;
+            --gold: #ffd166;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            transform: rotate(45deg);
+            opacity: 0.7;
+            animation: float 15s infinite linear;
+        }
+
+        .heart:before, .heart:after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -10px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+        }
+
+        .title-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .title-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 7rem;
+            opacity: 0.1;
+            color: var(--gold);
+            z-index: 1;
+            white-space: nowrap;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 30px;
+        }
+
+        .love-letter {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .love-letter:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--gold), var(--accent));
+        }
+
+        .letter-content {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            text-align: justify;
+            position: relative;
+            z-index: 2;
+        }
+
+        .letter-content p {
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-top: 30px;
+        }
+
+        .photo-section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--gold);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
+        }
+
+        /* SLIDER CON IMÁGENES AJUSTADAS */
+        .slider-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.2); /* Fondo para espacios vacíos */
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 500px;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Cambiado de cover a contain para evitar cortes */
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            padding: 20px;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .slider-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* GALERÍA CON IMÁGENES AJUSTADAS */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05); /* Fondo para espacios vacíos */
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-item img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Cambiado de cover a contain para evitar cortes */
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .video-section {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .video-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .play-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* JUEGO DE MEMORIA CON IMÁGENES AJUSTADAS */
+        .memory-game {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .memory-card {
+            height: 120px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .memory-card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 2rem;
+        }
+
+        .card-back {
+            background: white;
+            transform: rotateY(180deg);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+
+        .card-back img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Cambiado de cover a contain para evitar cortes */
+        }
+
+        .countdown {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 100px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .countdown-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+        }
+
+        .heart-pulse {
+            display: inline-block;
+            color: var(--primary);
+            font-size: 1.5rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            .title-bg {
+                font-size: 5rem;
+            }
+            
+            .letter-content {
+                font-size: 1.1rem;
+            }
+            
+            .slider {
+                height: 400px;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .game-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .countdown-container {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .title-bg {
+                font-size: 3.5rem;
+            }
+            
+            .slider {
+                height: 300px;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .game-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fondos animados -->
+    <div class="floating-hearts" id="hearts-container"></div>
+
+    <div class="container">
+        <header>
+            <div class="title-container">
+                <h1>Para Mi Reina</h1>
+                <div class="title-bg">29 Primaveras</div>
+            </div>
+            <p class="subtitle">Cada día a tu lado es un regalo del universo</p>
+        </header>
+
+        <section class="love-letter">
+            <div class="letter-content">
+                <p>Mi reina, hoy en tus 29 años quiero mirarte y darte las gracias por todo lo que hemos vivido, por cada viaje que nos llenó el alma, por cada lugar donde tu mano en la mía hizo que el mundo se sintiera más bonito, y por cada momento que se volvió recuerdo porque tú estabas en él.</p>
+                
+                <p>Gracias por ser la fuerza y la ternura que sostienen nuestro hogar, por construir conmigo un refugio hecho de amor verdadero, de confianza y de sueños que solo contigo tienen sentido.</p>
+                
+                <p>Tú eres mi destino favorito, mi paz, mi vida entera, y deseo que este cumpleaños te haga sentir lo valiosa, especial e inmensamente amada que eres para mí, hoy y siempre.</p>
+                
+                <div class="signature">Con todo mi amor</div>
+            </div>
+        </section>
+
+        <section class="photo-section">
+            <h2 class="section-title">Nuestros Momentos</h2>
+            
+            <div class="slider-container">
+                <div class="slider" id="slider">
+                    <div class="slide">
+                        <img src="https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/577325582_25240478725547661_6708855312417039864_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH89My2jkYAUkv9KZpur_TwDBTPTUkI_4QMFM9NSQj_hNAGkTF8I2KTkYwS3BEyiRlbsjMsxOatiqQsKhYYBSxO&_nc_ohc=SrW8zh3rYM4Q7kNvwF5bnx-&_nc_oc=AdlWR1JNURCCuR9t2kvsPrwbLgNquOcpl5FBbADf2G-l_o_P0GXrh4NuaGSu-DshSO8&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=VpJ_7rriI52OmcFmcOi3vA&oh=00_Afi3geTZWcxgUERtR4EA8V6h5fGNwHNDy0DrNJDfm8uERQ&oe=692BECFE">
+                        <div class="slide-caption">El día que supe que mi vida sería contigo</div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/557415520_24958160197112850_9170898483923226719_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEVrme9RTytAjivC_6whlFJQSapRIsl0eZBJqlEiyXR5vNJegD_6XlGjXleYLjdsG4wUdN7fH5bARNj3ElJH8ig&_nc_ohc=f9fsU9UEgB8Q7kNvwEtJZgK&_nc_oc=Adkn8w0yUGidsQcUnX_uHwN-SV-QBSGHEQNldPGtN1hWXLrhuIepsWKb9pAZX_-kiJc&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=t4FwiDy-IAT25SWCmvTFXA&oh=00_AfjP1aWThD13kZUHECRVrNvP1mOCYIg9b1xEFS7HrU2ouQ&oe=692BF546" alt="Aventuras juntos">
+                        <div class="slide-caption">Cada aventura es mejor a tu lado</div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://scontent-bog2-2.xx.fbcdn.net/v/t39.30808-6/557647947_24958160210446182_6255897872111156911_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEnh-Pvhj2aYvRUsXBUEVzCe3g7MMSdesx7eDswxJ16zOylexARyrfMacq9qPie2y1976CxSnxSQKFD_fYnRQbw&_nc_ohc=f5Ai7ttQNjsQ7kNvwGICo-y&_nc_oc=Adl4I0tCaJFiC6fQjhANdBPg2tABvFTXPqIJni8ih6vxwXYtZkrfX8YTw1H60vhrSZA&_nc_zt=23&_nc_ht=scontent-bog2-2.xx&_nc_gid=vRtfv1u4TrZ3RGtRan7EuA&oh=00_Afg6De67jdbGNhJ7vCiOy6BvAsUEWzjdFF9iwjGB-6JBAg&oe=692C0D3F" alt="Mirada de amor">
+                        <div class="slide-caption">En tu mirada encuentro mi hogar</div>
+                    </div>
+                </div>
+                
+                <div class="slider-nav">
+                    <button class="slider-btn" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn" id="next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <div class="gallery" id="gallery">
+                <!-- Las imágenes se cargarán dinámicamente con JavaScript -->
+            </div>
+        </section>
+
+        <section class="video-section">
+            <h2 class="section-title">Nuestra Canción</h2>
+            
+            <div class="video-container">
+                <iframe
+    id="love-video"
+    width="100%" height="315"
+    src="https://www.youtube.com/watch?v=-bC4iak3kxg&list=RD-bC4iak3kxg&start_radio=1"
+    title="YouTube player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+</iframe>
+
+                
+                <div class="video-overlay" id="video-overlay">
+                    <div class="play-btn" id="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <p>Haz clic para reproducir nuestra canción especial</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="memory-game">
+            <h2 class="section-title">Nuestros Recuerdos</h2>
+            <p>Encuentra las parejas de nuestros momentos especiales</p>
+            
+            <div class="game-container" id="memory-game">
+                <!-- Las tarjetas se generarán con JavaScript -->
+            </div>
+        </section>
+
+        <section class="countdown">
+            <h2 class="section-title">Próximo Capítulo Juntos</h2>
+            <p>Contando los días hasta nuestro próximo viaje</p>
+            
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">0</div>
+                    <div class="countdown-label">Días</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">0</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">0</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="seconds">0</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Creado con <span class="heart-pulse">❤️</span> para la mujer más especial de mi vida</p>
+            <p>En tus 29 primaveras, recordando que el amor verdadero es nuestro mayor tesoro</p>
+        </footer>
+    </div>
+
+    <script>
+        // Crear corazones flotantes
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts-container');
+            const heartCount = 25;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                // Posición y animación aleatorias
+                const size = Math.random() * 20 + 10;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 20 + 10;
+                const animationDelay = Math.random() * 5;
+                const color = `hsl(${Math.random() * 360}, 100%, 65%)`;
+                
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                heart.style.left = `${left}vw`;
+                heart.style.animationDuration = `${animationDuration}s`;
+                heart.style.animationDelay = `${animationDelay}s`;
+                heart.style.background = color;
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Slider de imágenes
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        function showSlide(index) {
+            const slider = document.getElementById('slider');
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
+            
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        
+        document.getElementById('next-btn').addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+        
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+        
+        // Auto-avance del slider
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        // Galería de imágenes
+        function loadGallery() {
+            const gallery = document.getElementById('gallery');
+            const imageUrls = [
+                'https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/502905652_23904176929177854_604912316020017161_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFhi4EPdRunBQkCg5CL36fxN5evLsLIzck3l68uwsjNyXwdmUmGZ6HaB1L76lNHuNOvbacwjS6CljSAVyBDzpl2&_nc_ohc=VMbvXWMurNYQ7kNvwE7eNa_&_nc_oc=AdnYQRmh6SbM0dM9LQg6JSRgYrpbXa34ry_6wE7vEDZQH-ffdCGuJz7TXNW18nwaweI&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=L1FFGpaOt_mEqiKXeYu6Ew&oh=00_AfjVKpj1SSxk2DyalWV9nXycTWf5oWZYQhvK2nT7l9rcGg&oe=692C0CF9',
+                'https://scontent-bog2-2.xx.fbcdn.net/v/t39.30808-6/498537276_10031459216876193_3538337701154160983_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE2M3ui1_RPJK7pPCEjMyVoqOaK-GQpUkOo5or4ZClSQ906AVVsvHtp0-EINdyOBcSqvcRDWXAC2GIg7eRwU5Oa&_nc_ohc=rYJwIW2p2AQQ7kNvwGSHCQa&_nc_oc=AdkBRYAsgZM9DdhAMW9Tr1nuJiPiU-MiMdnJWAriCXoDEwNBUSVi2V0pRXu8omBvdLg&_nc_zt=23&_nc_ht=scontent-bog2-2.xx&_nc_gid=9ihnlpdHaJXDTX43qzo5cg&oh=00_AfhnGKOj4HfSlMEuR0DuWLI2Ej4-rBCiKvOL4L4k3hip2A&oe=692BECBD',
+                'https://scontent-bog2-2.xx.fbcdn.net/v/t39.30808-6/499510380_10031459110209537_582068011215243578_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGjR5wq7y7h5QJyXYbfRhl7qBz9mw84lueoHP2bDziW5_2Efv5hFM4r1bZRfpXGRJg-lYCzqBSqMk7wrNLTN5nc&_nc_ohc=tMwnA3IBvuQQ7kNvwEAwlHi&_nc_oc=Adn52qBJVQqNs0y7Gm3msBizST06eAAk9VVU5YEVG1FEF_doh3YeKHcOAXirnW4A2Cs&_nc_zt=23&_nc_ht=scontent-bog2-2.xx&_nc_gid=JZu4QpPQ3FsHx3NShHzT9Q&oh=00_AfhZ7rm4VKTP2S6xxhQV_hffUNvLcaU1fWAa9DbYXgkoNw&oe=692BF0EC',
+                'https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/502585941_23904177105844503_5774880564356543040_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEMtA7llZqz2YXizoPM-GqVZzq2RkdtOUZnOrZGR205RuEEh-REd2GqofkW7dXI2FlkoFTkMsGy92UPj4jjMhUn&_nc_ohc=o2yHywdWMSUQ7kNvwF_1qSp&_nc_oc=AdnA2APX9y1ePMagTBLVD0cCMKSkLsRcB5IBqCMpLs2MQL_UKbjsIK0R6c-488BzotY&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=2ZUm_jAtmFq_d7ecVL9Byw&oh=00_AfjkwUdquy-fpzxfNXk9cGtjHifJBzAOENVqBehz_tPQ1w&oe=692BE566',
+                'https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/559851516_24958157503779786_4267237365172512445_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGxBiv-5bBr_9TRzNIh3V7WvEnEqyZar0-8ScSrJlqvT0wK0KJuf--uv3Vcnd1mcuzzZGM8ZWFjvkUPxaGdQXYY&_nc_ohc=mwOForGQWsAQ7kNvwErJXh-&_nc_oc=AdmAMzQVPfZknb9pv6OCXlAJI7mW1Y3UaPNRNc6a44K6fv75eCqqr22rwgdFja2D4cM&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=HyEyG27XM5VKdInQ682s2Q&oh=00_Afio-HPah6tPhCDAWtUHWD5VkJFFBLO8aLszQI3ADXBVag&oe=692C157D',
+                'https://scontent-bog2-2.xx.fbcdn.net/v/t39.30808-6/558933508_24958157167113153_6265730634283975389_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGjvGDIflPsgyFbTB6hd3ufuzVMC6o7nOO7NUwLqjuc4xYnPYE2V717HzEutxNeIgFJ4hNmv2_446UEiAoGVSsF&_nc_ohc=79l3cTo1qH0Q7kNvwHF9TlA&_nc_oc=AdmXQlHjmTcu0E704IDcu4s8USgmDcPN1weNPorlTaN_Diz6yw3SagdoouI4E4Hjw64&_nc_zt=23&_nc_ht=scontent-bog2-2.xx&_nc_gid=6L6BRB0-wYFdJ0J54WOWww&oh=00_Afi5XGFWKzSkALG6g1YyvLHHtgTJdHqdlvZ_0jRkMkkXBA&oe=692BE4D5'
+            ];
+            
+            imageUrls.forEach(url => {
+                const galleryItem = document.createElement('div');
+                galleryItem.classList.add('gallery-item');
+                
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = 'Nuestro momento especial';
+                
+                const overlay = document.createElement('div');
+                overlay.classList.add('gallery-overlay');
+                overlay.innerHTML = '<p>Nuestro momento especial</p>';
+                
+                galleryItem.appendChild(img);
+                galleryItem.appendChild(overlay);
+                gallery.appendChild(galleryItem);
+            });
+        }
+
+        // Control de video
+        const video = document.getElementById('love-video');
+        const videoOverlay = document.getElementById('video-overlay');
+        const playBtn = document.getElementById('play-btn');
+        
+        playBtn.addEventListener('click', () => {
+            video.play();
+            videoOverlay.classList.add('hidden');
+        });
+        
+        video.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                videoOverlay.classList.add('hidden');
+            } else {
+                video.pause();
+                videoOverlay.classList.remove('hidden');
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
+        
+        video.addEventListener('ended', () => {
+            videoOverlay.classList.remove('hidden');
+            playBtn.innerHTML = '<i class="fas fa-redo"></i>';
+        });
+
+        // Juego de memoria
+        function createMemoryGame() {
+            const gameContainer = document.getElementById('memory-game');
+            const cardImages = [
+                'https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/559980672_24958160223779514_5541303982313508881_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGW3cei7dvaNstDBzal3Rdlymn2q3fvzUHKafard-_NQSCeZ6ijasqh8KWGz3rSmupMnA79QoGMeLfzGYuw8wfC&_nc_ohc=NBVcxrZBPBQQ7kNvwECVQF9&_nc_oc=Adn8zvmfkurUkzH5da59osfeSGAkKG3eGHXZJ4hFLw85GYMsVWdf0rJ3LEjhUWr5ZTU&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=e55fE3xJaaD0GvFBXnRnwg&oh=00_AfgNMcVYTB51zxzVWZ1j4ZeonBTtaLLaUnCjqMcd1z-l4A&oe=692BE62D',
+                'https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/557728762_24958160243779512_6431972647838520942_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHrhTcC-VwzGtwxqM9DlDjku9-a7rNgLBW735rus2AsFXw1he52FwfsMEFu2-mfnmcvWU-q_QzgS3LX8Polw_9U&_nc_ohc=NxhLbd7VZGoQ7kNvwHBKL8c&_nc_oc=AdmfIAs3yLXTAs58JJp9TLL9lRQg6cLyZpnRhfJbVBKxk6tIPPLEP553PKWAs3Iou44&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=LjGYxN8teohcs44huoG-4g&oh=00_Afi_MnGDOtwvNI-HGL0pRcTDL__ZygelNs3-1NX5bd5Mhg&oe=692BF74F',
+                'https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/558014493_24958160313779505_728142637368563108_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHIlBjPnrnECRZ07uAZV7nJOBIKZxyeTzk4EgpnHJ5POWn92fDHBK-znJVXf-4YCX8p7h3UgcxBpalKx6LYqliV&_nc_ohc=2tUVV_iAj5MQ7kNvwFSzsjg&_nc_oc=AdmiLR8rsRyaLB06m_alchs8va9Wz5GMqCw6WEIZSFWQZgDn__AHKzlYJv3wsyWIwU0&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=sX8Ac5iLCLrf8c1qYmtYpA&oh=00_AfizyYPbeXWTioQjh-LWHKYH92qQeGRAh2y8CcpSA2DRmw&oe=692C099E',
+                'https://scontent-bog2-2.xx.fbcdn.net/v/t39.30808-6/503878496_23932625532999660_1759490050077651465_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGs8z2JLJ9EkhsiCzskpULNHrDAbxU205QesMBvFTbTlM-XAItTkl7txJQc65pIojo7syE4SSqfEmJx9mrAzHPE&_nc_ohc=YtxGEGwJF5UQ7kNvwHvFdeA&_nc_oc=AdmmNlT-fnebzOKe5WWUctTqM-L7Qb7cOC-7yLjFRhk-WnSpiwOsVke5HbanC6GVnck&_nc_zt=23&_nc_ht=scontent-bog2-2.xx&_nc_gid=locRAm7cYWk2eH70fyi1Bg&oh=00_AfiiyzOXvY10o3wrOMAW9wc9P_QoOM9uVm6gGS1noAJtWg&oe=692BF2B0'
+            ];
+            
+            // Duplicar las imágenes para crear pares
+            const cardPairs = [...cardImages, ...cardImages];
+            
+            // Barajar las cartas
+            cardPairs.sort(() => Math.random() - 0.5);
+            
+            // Crear las cartas
+            cardPairs.forEach((image, index) => {
+                const card = document.createElement('div');
+                card.classList.add('memory-card');
+                card.dataset.image = image;
+                
+                const cardInner = document.createElement('div');
+                cardInner.classList.add('card-inner');
+                
+                const cardFront = document.createElement('div');
+                cardFront.classList.add('card-front');
+                cardFront.innerHTML = '<i class="fas fa-heart"></i>';
+                
+                const cardBack = document.createElement('div');
+                cardBack.classList.add('card-back');
+                const img = document.createElement('img');
+                img.src = image;
+                img.alt = 'Nuestro recuerdo';
+                cardBack.appendChild(img);
+                
+                cardInner.appendChild(cardFront);
+                cardInner.appendChild(cardBack);
+                card.appendChild(cardInner);
+                
+                card.addEventListener('click', flipCard);
+                
+                gameContainer.appendChild(card);
+            });
+        }
+        
+        let hasFlippedCard = false;
+        let lockBoard = false;
+        let firstCard, secondCard;
+        
+        function flipCard() {
+            if (lockBoard) return;
+            if (this === firstCard) return;
+            
+            this.classList.add('flipped');
+            
+            if (!hasFlippedCard) {
+                // Primer clic
+                hasFlippedCard = true;
+                firstCard = this;
+                return;
+            }
+            
+            // Segundo clic
+            secondCard = this;
+            checkForMatch();
+        }
+        
+        function checkForMatch() {
+            const isMatch = firstCard.dataset.image === secondCard.dataset.image;
+            
+            isMatch ? disableCards() : unflipCards();
+        }
+        
+        function disableCards() {
+            firstCard.removeEventListener('click', flipCard);
+            secondCard.removeEventListener('click', flipCard);
+            
+            resetBoard();
+        }
+        
+        function unflipCards() {
+            lockBoard = true;
+            
+            setTimeout(() => {
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                
+                resetBoard();
+            }, 1500);
+        }
+        
+        function resetBoard() {
+            [hasFlippedCard, lockBoard] = [false, false];
+            [firstCard, secondCard] = [null, null];
+        }
+
+        // Cuenta regresiva
+        function startCountdown() {
+            const nextTripDate = new Date();
+            nextTripDate.setMonth(nextTripDate.getMonth() + 10); // 11 meses desde hoy
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = nextTripDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        // Inicializar todo cuando se carga la página
+        window.addEventListener('DOMContentLoaded', () => {
+            createHearts();
+            loadGallery();
+            createMemoryGame();
+            startCountdown();
+        });
+    </script>
+</body>
+</html>
